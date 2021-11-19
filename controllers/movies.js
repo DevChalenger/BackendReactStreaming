@@ -6,7 +6,7 @@ exports.oneMovie = (req, res, next) => {
 };
 
 exports.allMovies = (req, res, next) => {
-  Movies.find({}, { synopsis: 0 }, { trailer: 0 })
+  Movies.find({}, { synopsis: 0, trailer: 0 })
     .then((movies) => res.status(200).json(movies))
     .catch((error) => res.status(400).json({ error }));
 };
@@ -15,8 +15,7 @@ exports.searchMovies = (req, res, next) => {
     {
       title: { $regex: req.query.search, $options: "i" },
     },
-    { synopsis: 0 },
-    { trailer: 0 }
+    { synopsis: 0, trailer: 0 }
   )
     .limit(20)
     .then((movies) => res.status(200).json(movies))
