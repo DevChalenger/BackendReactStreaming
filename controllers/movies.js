@@ -17,7 +17,8 @@ exports.searchMovies = (req, res, next) => {
     },
     { synopsis: 0, trailer: 0 }
   )
-    .limit(20)
+    .sort({ title: 1 })
+    .limit(30)
     .then((movies) => res.status(200).json(movies))
     .catch((error) => res.status(400).json({ error }));
 };
